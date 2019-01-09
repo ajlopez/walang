@@ -1,0 +1,28 @@
+{
+  "name": "walang",
+  "description": "Walang, C-like programming language oriented to be easily compiled to WebAssembly, WIP",
+  "keywords": [
+    "webassembly",
+    "wasm",
+    "programming",
+    "compiler"
+  ],
+  "version": "0.0.1alpha",
+  "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ajlopez/walang.git"
+  },
+  "main": "./lib/walang.js",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "scripts": {
+    "test": "simpleunit ./test -r"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "simpleunit": "0.0.7"
+  }
+}
