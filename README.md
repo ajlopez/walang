@@ -5,7 +5,7 @@ compiled to WebAssembly. WIP.
 
 ## References
 
-TBD
+- [WABT: The WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
 
 ## Contribution
 
