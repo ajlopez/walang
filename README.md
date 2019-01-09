@@ -3,6 +3,17 @@
 C-like programming language oriented to be easily
 compiled to WebAssembly. WIP.
 
+## Design
+
+### Types
+
+- `int`
+- `uint`
+- `long`
+- `ulong`
+- `float`
+- `double`
+
 ## References
 
 - [WABT: The WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
