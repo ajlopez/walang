@@ -17,6 +17,7 @@ compiled to WebAssembly. WIP.
 ## References
 
 - [WABT: The WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
+- [Understanding WebAssembly text format](https://developer.mozilla.org/en-US/docs/WebAssembly/Understanding_the_text_format)
 
 ## Contribution
 
