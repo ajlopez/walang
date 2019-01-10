@@ -13,3 +13,8 @@ exports['compile integer constants'] = function (test) {
     compileConstant(test, t.ulong, 144, [ 'i64.const', 144 ]);
 };
 
+exports['compile real constants'] = function (test) {
+    compileConstant(test, t.float, 1.5, [ 'f32.const', 1.5 ]);
+    compileConstant(test, t.double, 3.14, [ 'f64.const', 3.14 ]);
+};
+
