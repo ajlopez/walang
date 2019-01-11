@@ -11,3 +11,10 @@ exports['create integer constant'] = function (test) {
     test.equal(expr.type(), types.int);
 };
 
+exports['create variable expression'] = function (test) {
+    var expr = x.variable('v');
+    
+    test.ok(expr);
+    test.equal(typeof expr, 'object');
+    test.equal(expr.name(), 'v');
+};
