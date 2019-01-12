@@ -1,20 +1,29 @@
 
 var x = require('../lib/expressions');
-var types = require('../lib/types');
+var t = require('../lib/types');
 
-exports['create integer constant'] = function (test) {
-    var expr = x.constant(types.int, 10);
+exports['integer constant expression'] = function (test) {
+    var expr = x.constant(t.int, 10);
     
     test.ok(expr);
     test.equal(typeof expr, 'object');
     test.equal(expr.value(), 10);
-    test.equal(expr.type(), types.int);
+    test.equal(expr.type(), t.int);
 };
 
-exports['create name expression'] = function (test) {
+exports['name expression'] = function (test) {
     var expr = x.name('v');
     
     test.ok(expr);
     test.equal(typeof expr, 'object');
     test.equal(expr.name(), 'v');
+};
+
+exports['variable expression'] = function (test) {
+    var expr = x.variable(t.int, 'v');
+    
+    test.ok(expr);
+    test.equal(typeof expr, 'object');
+    test.equal(expr.name(), 'v');
+    test.equal(expr.type(), t.int);
 };
