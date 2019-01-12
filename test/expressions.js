@@ -11,8 +11,8 @@ exports['create integer constant'] = function (test) {
     test.equal(expr.type(), types.int);
 };
 
-exports['create variable expression'] = function (test) {
-    var expr = x.variable('v');
+exports['create name expression'] = function (test) {
+    var expr = x.name('v');
     
     test.ok(expr);
     test.equal(typeof expr, 'object');
