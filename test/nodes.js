@@ -1,9 +1,9 @@
 
-var x = require('../lib/expressions');
+var n = require('../lib/nodes');
 var t = require('../lib/types');
 
-exports['integer constant expression'] = function (test) {
-    var expr = x.constant(t.int, 10);
+exports['integer constant node'] = function (test) {
+    var expr = n.constant(t.int, 10);
     
     test.ok(expr);
     test.equal(typeof expr, 'object');
@@ -11,16 +11,16 @@ exports['integer constant expression'] = function (test) {
     test.equal(expr.type(), t.int);
 };
 
-exports['name expression'] = function (test) {
-    var expr = x.name('v');
+exports['name node'] = function (test) {
+    var expr = n.name('v');
     
     test.ok(expr);
     test.equal(typeof expr, 'object');
     test.equal(expr.name(), 'v');
 };
 
-exports['variable expression'] = function (test) {
-    var expr = x.variable(t.int, 'v');
+exports['variable node'] = function (test) {
+    var expr = n.variable(t.int, 'v');
     
     test.ok(expr);
     test.equal(typeof expr, 'object');
