@@ -19,6 +19,11 @@ compiled to WebAssembly. WIP.
 - [WABT: The WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
 - [Understanding WebAssembly text format](https://developer.mozilla.org/en-US/docs/WebAssembly/Understanding_the_text_format)
 - [Writing WebAssembly By Hand](https://blog.scottlogic.com/2018/04/26/webassembly-by-hand.html)
+- [Dissecting a Minimum (Useful) Webassembly Module](https://webassemblycode.com/dissecting-minimum-useful-webassembly-module/)
+- [Introduction to WebAssembly](https://rsms.me/wasm-intro)
+- [An Introduction to WebAssembly](https://blog.dovico.com/an-introduction-to-webassembly-f9ece078203)
+- [WebAssembly FAQ](https://github.com/WebAssembly/design/blob/master/FAQ.md)
+- [WebAssembly Use Cases](https://github.com/WebAssembly/design/blob/master/UseCases.md)
 
 ## Contribution
 
