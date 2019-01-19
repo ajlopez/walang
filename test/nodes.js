@@ -41,3 +41,15 @@ exports['binary operator node'] = function (test) {
     test.equal(node.right().type(), t.int);
     test.equal(node.right().value(), 2);
 };
+
+exports['unary operator node'] = function (test) {
+    var node = n.unary('-', n.constant(t.int, 42));
+    
+    test.ok(node);
+
+    test.equal(typeof node, 'object');
+    
+    test.equal(node.operator(), '-');
+    test.equal(node.node().type(), t.int);
+    test.equal(node.node().value(), 42);
+};
