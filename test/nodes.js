@@ -54,7 +54,7 @@ exports['unary operator node'] = function (test) {
     test.equal(node.node().value(), 42);
 };
 
-exports['if operator node'] = function (test) {
+exports['if node'] = function (test) {
     var node = n.if(n.constant(t.int, 1), n.constant(t.int, 42), n.constant(t.int, 0));
     
     test.ok(node);
@@ -69,4 +69,18 @@ exports['if operator node'] = function (test) {
     
     test.equal(node.elseNode().type(), t.int);
     test.equal(node.elseNode().value(), 0);
+};
+
+exports['while'] = function (test) {
+    var node = n.while(n.constant(t.int, 1), n.constant(t.int, 42));
+    
+    test.ok(node);
+
+    test.equal(typeof node, 'object');
+    
+    test.equal(node.expression().type(), t.int);
+    test.equal(node.expression().value(), 1);
+    
+    test.equal(node.bodyNode().type(), t.int);
+    test.equal(node.bodyNode().value(), 42);
 };
