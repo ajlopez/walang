@@ -1,18 +1,18 @@
 
-var lexers = require('../lib/lexers');
-var TokenType = lexers.TokenType;
+const lexers = require('../lib/lexers');
+const TokenType = lexers.TokenType;
 
 exports['create lexer as object'] = function (test) {
-    var lexer = lexers.lexer('foo');
+    const lexer = lexers.lexer('foo');
     
     test.ok(lexer);
     test.equal(typeof lexer, 'object');
 };
 
 exports['first token'] = function (test) {
-    var lexer = lexers.lexer('foo');
+    const lexer = lexers.lexer('foo');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, 'foo');
@@ -22,15 +22,15 @@ exports['first token'] = function (test) {
 };
 
 exports['no token in empty string'] = function (test) {
-    var lexer = lexers.lexer('');
+    const lexer = lexers.lexer('');
     
     test.equal(lexer.nextToken(), null);
 };
 
 exports['name skipping spaces'] = function (test) {
-    var lexer = lexers.lexer('  foo   ');
+    const lexer = lexers.lexer('  foo   ');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, 'foo');
@@ -40,7 +40,7 @@ exports['name skipping spaces'] = function (test) {
 };
 
 exports['two names'] = function (test) {
-    var lexer = lexers.lexer('foo bar');
+    const lexer = lexers.lexer('foo bar');
   
     var token = lexer.nextToken();
     
@@ -58,9 +58,9 @@ exports['two names'] = function (test) {
 };
 
 exports['number'] = function (test) {
-    var lexer = lexers.lexer('42');
+    const lexer = lexers.lexer('42');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, '42');
@@ -70,9 +70,9 @@ exports['number'] = function (test) {
 };
 
 exports['semicolon as delimiter'] = function (test) {
-    var lexer = lexers.lexer(';');
+    const lexer = lexers.lexer(';');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, ';');
@@ -82,9 +82,9 @@ exports['semicolon as delimiter'] = function (test) {
 };
 
 exports['comma as delimiter'] = function (test) {
-    var lexer = lexers.lexer(',');
+    const lexer = lexers.lexer(',');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, ',');
@@ -94,7 +94,7 @@ exports['comma as delimiter'] = function (test) {
 };
 
 exports['parentheses as delimiters'] = function (test) {
-    var lexer = lexers.lexer('()');
+    const lexer = lexers.lexer('()');
   
     var token = lexer.nextToken();
     
@@ -112,9 +112,9 @@ exports['parentheses as delimiters'] = function (test) {
 };
 
 exports['dot as delimiter'] = function (test) {
-    var lexer = lexers.lexer('.');
+    const lexer = lexers.lexer('.');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, '.');
@@ -124,7 +124,7 @@ exports['dot as delimiter'] = function (test) {
 };
 
 exports['name and delimiter'] = function (test) {
-    var lexer = lexers.lexer('foo;');
+    const lexer = lexers.lexer('foo;');
   
     var token = lexer.nextToken();
     
@@ -142,9 +142,9 @@ exports['name and delimiter'] = function (test) {
 };
 
 exports['name starting with underscore'] = function (test) {
-    var lexer = lexers.lexer('_foo');
+    const lexer = lexers.lexer('_foo');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, '_foo');
@@ -154,9 +154,9 @@ exports['name starting with underscore'] = function (test) {
 };
 
 exports['name having underscore'] = function (test) {
-    var lexer = lexers.lexer('foo_bar');
+    const lexer = lexers.lexer('foo_bar');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, 'foo_bar');
@@ -166,9 +166,9 @@ exports['name having underscore'] = function (test) {
 };
 
 exports['name having underscore and digits'] = function (test) {
-    var lexer = lexers.lexer('foo_42');
+    const lexer = lexers.lexer('foo_42');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, 'foo_42');
@@ -178,9 +178,9 @@ exports['name having underscore and digits'] = function (test) {
 };
 
 exports['string'] = function (test) {
-    var lexer = lexers.lexer('"foo"');
+    const lexer = lexers.lexer('"foo"');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, 'foo');
@@ -190,7 +190,7 @@ exports['string'] = function (test) {
 };
 
 exports['string and name'] = function (test) {
-    var lexer = lexers.lexer('"foo" bar');
+    const lexer = lexers.lexer('"foo" bar');
   
     var token = lexer.nextToken();
     
@@ -209,9 +209,9 @@ exports['string and name'] = function (test) {
 };
 
 exports['+ as operator'] = function (test) {
-    var lexer = lexers.lexer('+');
+    const lexer = lexers.lexer('+');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, '+');
@@ -221,9 +221,9 @@ exports['+ as operator'] = function (test) {
 };
 
 exports['= as operator'] = function (test) {
-    var lexer = lexers.lexer('=');
+    const lexer = lexers.lexer('=');
   
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.value, '=');
@@ -233,7 +233,7 @@ exports['= as operator'] = function (test) {
 };
 
 exports['{} as delimiters'] = function (test) {
-    var lexer = lexers.lexer('{}');
+    const lexer = lexers.lexer('{}');
   
     var token = lexer.nextToken();
     
@@ -251,7 +251,7 @@ exports['{} as delimiters'] = function (test) {
 };
 
 exports['[] as delimiters'] = function (test) {
-    var lexer = lexers.lexer('[]');
+    const lexer = lexers.lexer('[]');
   
     var token = lexer.nextToken();
     
@@ -269,11 +269,11 @@ exports['[] as delimiters'] = function (test) {
 };
 
 exports['arithmetic operators'] = function (test) {
-    var operators = '+-*/';
-    var lexer = lexers.lexer(operators);
+    const operators = '+-*/';
+    const lexer = lexers.lexer(operators);
   
     for (var k = 0; k < operators.length; k++) {            
-        var token = lexer.nextToken();
+        const token = lexer.nextToken();
         
         test.ok(token);
         test.equal(token.value, operators[k]);
