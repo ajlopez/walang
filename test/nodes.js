@@ -3,7 +3,7 @@ var n = require('../lib/nodes');
 var t = require('../lib/types');
 
 exports['integer constant node'] = function (test) {
-    var node = n.constant(t.int, 10);
+    var node = n.constant(10, t.int);
     
     test.ok(node);
     test.equal(typeof node, 'object');
@@ -20,7 +20,7 @@ exports['name node'] = function (test) {
 };
 
 exports['variable node'] = function (test) {
-    var node = n.variable(t.int, 'v');
+    var node = n.variable('v', t.int);
     
     test.ok(node);
     test.equal(typeof node, 'object');
@@ -29,7 +29,7 @@ exports['variable node'] = function (test) {
 };
 
 exports['binary operator node'] = function (test) {
-    var node = n.binary('+', n.constant(t.int, 40), n.constant(t.int, 2));
+    var node = n.binary('+', n.constant(40, t.int), n.constant(2, t.int));
     
     test.ok(node);
 
@@ -43,44 +43,45 @@ exports['binary operator node'] = function (test) {
 };
 
 exports['unary operator node'] = function (test) {
-    var node = n.unary('-', n.constant(t.int, 42));
+    var node = n.unary('-', n.constant(42, t.int));
     
     test.ok(node);
 
     test.equal(typeof node, 'object');
     
     test.equal(node.operator(), '-');
-    test.equal(node.node().type(), t.int);
-    test.equal(node.node().value(), 42);
+    test.equal(node.expression().type(), t.int);
+    test.equal(node.expression().value(), 42);
 };
 
-exports['if node'] = function (test) {
-    var node = n.if(n.constant(t.int, 1), n.constant(t.int, 42), n.constant(t.int, 0));
+exports['conditional'] = function (test) {
+    var node = n.conditional(n.constant(1, t.int), n.constant(42, t.int), n.constant(0, t.int));
     
     test.ok(node);
 
     test.equal(typeof node, 'object');
     
-    test.equal(node.expression().type(), t.int);
-    test.equal(node.expression().value(), 1);
+    test.equal(node.condition().type(), t.int);
+    test.equal(node.condition().value(), 1);
     
-    test.equal(node.thenNode().type(), t.int);
-    test.equal(node.thenNode().value(), 42);
+    test.equal(node.then().type(), t.int);
+    test.equal(node.then().value(), 42);
     
-    test.equal(node.elseNode().type(), t.int);
-    test.equal(node.elseNode().value(), 0);
+    test.equal(node.else().type(), t.int);
+    test.equal(node.else().value(), 0);
 };
 
-exports['while'] = function (test) {
-    var node = n.while(n.constant(t.int, 1), n.constant(t.int, 42));
+exports['loop'] = function (test) {
+    var node = n.loop(n.constant(1, t.int), n.constant(42, t.int));
     
     test.ok(node);
 
     test.equal(typeof node, 'object');
     
-    test.equal(node.expression().type(), t.int);
-    test.equal(node.expression().value(), 1);
+    test.equal(node.condition().type(), t.int);
+    test.equal(node.condition().value(), 1);
     
-    test.equal(node.bodyNode().type(), t.int);
-    test.equal(node.bodyNode().value(), 42);
+    test.equal(node.body().type(), t.int);
+    test.equal(node.body().value(), 42);
 };
+
