@@ -24,6 +24,7 @@ compiled to WebAssembly. WIP.
 - [An Introduction to WebAssembly](https://blog.dovico.com/an-introduction-to-webassembly-f9ece078203)
 - [WebAssembly FAQ](https://github.com/WebAssembly/design/blob/master/FAQ.md)
 - [WebAssembly Use Cases](https://github.com/WebAssembly/design/blob/master/UseCases.md)
+- [Lys, a language that compiles to WebAssembly](https://lys-lang.dev/)
 
 ## Contribution
 
