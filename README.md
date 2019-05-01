@@ -13,6 +13,7 @@ compiled to WebAssembly. WIP.
 - `ulong`
 - `float`
 - `double`
+- `bool`
 
 ## References
 
