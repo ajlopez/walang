@@ -46,3 +46,13 @@ exports['parse arithmetic expressions'] = function (test) {
     parse(test, 'expression', '(40+2)', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
 };
 
+exports['parse variable declarations'] = function (test) {
+    parse(test, 'command', 'int a;', { ntype: 'variable', name: 'a', type: types.int });
+    parse(test, 'command', 'uint a;', { ntype: 'variable', name: 'a', type: types.uint });
+    parse(test, 'command', 'long a;', { ntype: 'variable', name: 'a', type: types.long });
+    parse(test, 'command', 'ulong a;', { ntype: 'variable', name: 'a', type: types.ulong });
+    parse(test, 'command', 'float a;', { ntype: 'variable', name: 'a', type: types.float });
+    parse(test, 'command', 'double a;', { ntype: 'variable', name: 'a', type: types.double });
+    parse(test, 'command', 'bool a;', { ntype: 'variable', name: 'a', type: types.bool });
+};
+
