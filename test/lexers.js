@@ -81,14 +81,26 @@ exports['two names'] = function (test) {
     test.equal(lexer.next(), null);
 };
 
-exports['number'] = function (test) {
+exports['integer'] = function (test) {
     const lexer = lexers.lexer('42');
   
     const token = lexer.next();
     
     test.ok(token);
     test.equal(token.value, '42');
-    test.equal(token.type, TokenType.Number);
+    test.equal(token.type, TokenType.Integer);
+    
+    test.equal(lexer.next(), null);
+};
+
+exports['real'] = function (test) {
+    const lexer = lexers.lexer('3.14159');
+  
+    const token = lexer.next();
+    
+    test.ok(token);
+    test.equal(token.value, '3.14159');
+    test.equal(token.type, TokenType.Real);
     
     test.equal(lexer.next(), null);
 };
