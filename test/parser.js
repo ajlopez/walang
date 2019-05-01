@@ -1,5 +1,6 @@
 
 const parser = require('../lib/parser');
+const types = require('../lib/types');
 const geast = require('geast');
 
 function parse(test, type, text, expected) {
@@ -21,5 +22,15 @@ exports['parse terms'] = function (test) {
     parse(test, 'term', 'true', { ntype: 'constant', value: true });
     parse(test, 'term', 'false', { ntype: 'constant', value: false });
     parse(test, 'term', 'answer', { ntype: 'name', name: 'answer' });
+};
+
+exports['parse types'] = function (test) {
+    parse(test, 'type', 'int', types.int);
+    parse(test, 'type', 'uint', types.uint);
+    parse(test, 'type', 'long', types.long);
+    parse(test, 'type', 'ulong', types.ulong);
+    parse(test, 'type', 'float', types.float);
+    parse(test, 'type', 'double', types.double);
+    parse(test, 'type', 'boolean', types.boolean);
 };
 
