@@ -56,3 +56,7 @@ exports['parse variable declarations'] = function (test) {
     parse(test, 'command', 'bool a;', { ntype: 'variable', name: 'a', type: types.bool });
 };
 
+exports['parse assign command'] = function (test) {
+    parse(test, 'command', 'a = 42;', { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }});
+};
+
