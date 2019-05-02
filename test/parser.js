@@ -60,7 +60,9 @@ exports['parse assign command'] = function (test) {
     parse(test, 'command', 'a = 42;', { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }});
 };
 
-exports['parse empty composite command'] = function (test) {
+exports['parse composite commands'] = function (test) {
     parse(test, 'command', '{}', { ntype: 'sequence', nodes: [] });
+    parse(test, 'command', '{ a = 42; }', { ntype: 'sequence', nodes: [ { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }} ] });
+    parse(test, 'command', '{ a = 42; b = 1; }', { ntype: 'sequence', nodes: [ { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }}, { ntype: 'assign', lefthand: { ntype: 'name', name: 'b' }, expression: { ntype: 'constant', value: 1 }} ] });
 };
 
