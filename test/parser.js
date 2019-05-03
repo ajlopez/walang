@@ -46,6 +46,16 @@ exports['parse arithmetic expressions'] = function (test) {
     parse(test, 'expression', '(40+2)', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
 };
 
+exports['parse comparison expressions'] = function (test) {
+    parse(test, 'expression', '40<2', { ntype: 'binary', operator: '<', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
+    parse(test, 'expression', '40<=2', { ntype: 'binary', operator: '<=', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
+    parse(test, 'expression', '40>2', { ntype: 'binary', operator: '>', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
+    parse(test, 'expression', '40>=2', { ntype: 'binary', operator: '>=', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
+    parse(test, 'expression', '40==2', { ntype: 'binary', operator: '==', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
+    parse(test, 'expression', '40!=2', { ntype: 'binary', operator: '!=', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
+    parse(test, 'expression', '40<2*40', { ntype: 'binary', operator: '<', left: { ntype: 'constant', value: 40 }, right: { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 2 }, right: { ntype: 'constant', value: 40 } }});
+};
+
 exports['parse variable declarations'] = function (test) {
     parse(test, 'command', 'int a;', { ntype: 'variable', name: 'a', type: types.int });
     parse(test, 'command', 'uint a;', { ntype: 'variable', name: 'a', type: types.uint });
