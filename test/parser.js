@@ -76,3 +76,8 @@ exports['parse composite commands'] = function (test) {
     parse(test, 'command', '{ a = 42; b = 1; }', { ntype: 'sequence', nodes: [ { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }}, { ntype: 'assign', lefthand: { ntype: 'name', name: 'b' }, expression: { ntype: 'constant', value: 1 }} ] });
 };
 
+exports['parse if command'] = function (test) {
+    parse(test, 'command', 'if (b) a = 42;', { ntype: 'conditional', condition: { ntype: 'name', name: 'b' }, then: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }}});
+    parse(test, 'command', 'if (b) a = 42; else a = 1;', { ntype: 'conditional', condition: { ntype: 'name', name: 'b' }, then: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }}, else: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 1 }}});
+};
+
