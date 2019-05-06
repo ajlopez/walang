@@ -81,3 +81,6 @@ exports['parse if command'] = function (test) {
     parse(test, 'command', 'if (b) a = 42; else a = 1;', { ntype: 'conditional', condition: { ntype: 'name', name: 'b' }, then: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }}, else: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 1 }}});
 };
 
+exports['parse while command'] = function (test) {
+    parse(test, 'command', 'while (k < 10) k = k + 1;', { ntype: 'loop', condition: { ntype: 'binary', operator: '<', left: { ntype: 'name', name: 'k' }, right: { ntype: 'constant', value: 10 } }, body: { ntype: 'assign', lefthand: { ntype: 'name', name: 'k' }, expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'k' }, right: { ntype: 'constant', value: 1 }  }}});
+};
