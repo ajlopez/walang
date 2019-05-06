@@ -1,6 +1,7 @@
 
 const parser = require('../lib/parser');
 const types = require('../lib/types');
+const visibilities = require('../lib/visibilities');
 const geast = require('geast');
 
 function parse(test, type, text, expected) {
@@ -32,6 +33,11 @@ exports['parse types'] = function (test) {
     parse(test, 'type', 'float', types.float);
     parse(test, 'type', 'double', types.double);
     parse(test, 'type', 'boolean', types.boolean);
+};
+
+exports['parse visibilities'] = function (test) {
+    parse(test, 'visibility', 'public', visibilities.public);
+    parse(test, 'visibility', 'private', visibilities.private);
 };
 
 exports['parse arithmetic expressions'] = function (test) {
