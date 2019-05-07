@@ -90,3 +90,14 @@ exports['parse if command'] = function (test) {
 exports['parse while command'] = function (test) {
     parse(test, 'command', 'while (k < 10) k = k + 1;', { ntype: 'loop', condition: { ntype: 'binary', operator: '<', left: { ntype: 'name', name: 'k' }, right: { ntype: 'constant', value: 10 } }, body: { ntype: 'assign', lefthand: { ntype: 'name', name: 'k' }, expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'k' }, right: { ntype: 'constant', value: 1 }  }}});
 };
+
+exports['parse return command'] = function (test) {
+    parse(test, 'command', 'return 42;', { ntype: 'return', expression: { ntype: 'constant', value: 42 } });
+};
+
+exports['parse functions'] = function (test) {
+    parse(test, 'function', 'public void main() {}', { ntype: 'function', name: 'main', visibility: visibilities.public, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }});
+    parse(test, 'function', 'private void main() {}', { ntype: 'function', name: 'main', visibility: visibilities.private, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }});
+    parse(test, 'function', 'void main() {}', { ntype: 'function', name: 'main', visibility: visibilities.private, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }});
+    parse(test, 'function', 'uint add(uint x, uint y) { return x+y; }', { ntype: 'function', name: 'add', visibility: visibilities.private, type: types.uint, arguments: [ { ntype: 'argument', type: types.uint, name: 'x' }, { ntype: 'argument', type: types.uint, name: 'y' }], body: { ntype: 'sequence', nodes: [ { ntype: 'return', expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'x' }, right: { ntype: 'name', name: 'y' }}}] }});
+};
