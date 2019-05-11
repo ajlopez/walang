@@ -33,7 +33,7 @@ exports['parse types'] = function (test) {
     parse(test, 'type', 'float', types.float);
     parse(test, 'type', 'double', types.double);
     parse(test, 'type', 'boolean', types.boolean);
-    parse(test, 'type', 'void', types.void);
+    parse(test, 'xtype', 'void', types.void);
 };
 
 exports['parse visibilities'] = function (test) {
