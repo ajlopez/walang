@@ -81,7 +81,7 @@ exports['parse composite commands'] = function (test) {
     parse(test, 'command', '{}', { ntype: 'sequence', nodes: [] });
     parse(test, 'command', '{ a = 42; }', { ntype: 'sequence', nodes: [ { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }} ] });
     parse(test, 'command', '{ a = 42; b = 1; }', { ntype: 'sequence', nodes: [ { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }}, { ntype: 'assign', lefthand: { ntype: 'name', name: 'b' }, expression: { ntype: 'constant', value: 1 }} ] });
-    parse(test, 'command', '{ return x+y; }', { ntype: 'sequence', nodes: [ { ntype: 'return', expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'x' }, rigth: { ntype: 'name', name: 'y' } } } ]});
+    parse(test, 'command', '{ return x+y; }', { ntype: 'sequence', nodes: [ { ntype: 'return', expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'x' }, right: { ntype: 'name', name: 'y' } } } ]});
 };
 
 exports['parse if command'] = function (test) {
@@ -101,5 +101,5 @@ exports['parse functions'] = function (test) {
     parse(test, 'function', 'public void main() {}', { ntype: 'function', name: 'main', visibility: visibilities.public, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }});
     parse(test, 'function', 'private void main() {}', { ntype: 'function', name: 'main', visibility: visibilities.private, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }});
     parse(test, 'function', 'void main() {}', { ntype: 'function', name: 'main', visibility: visibilities.private, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }});
-    parse(test, 'function', 'uint add() { }', { ntype: 'function', name: 'add', visibility: visibilities.private, type: types.uint, arguments: [ { ntype: 'argument', type: types.uint, name: 'x' }, { ntype: 'argument', type: types.uint, name: 'y' }], body: { ntype: 'sequence', nodes: [ { ntype: 'return', expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'x' }, right: { ntype: 'name', name: 'y' }}}] }});
+    parse(test, 'function', 'uint add(uint x, uint y) { return x+y; }', { ntype: 'function', name: 'add', visibility: visibilities.private, type: types.uint, arguments: [ { ntype: 'argument', type: types.uint, name: 'x' }, { ntype: 'argument', type: types.uint, name: 'y' }], body: { ntype: 'sequence', nodes: [ { ntype: 'return', expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'x' }, right: { ntype: 'name', name: 'y' }}}] }});
 };
