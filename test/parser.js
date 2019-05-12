@@ -103,3 +103,7 @@ exports['parse functions'] = function (test) {
     parse(test, 'function', 'void main() {}', { ntype: 'function', name: 'main', visibility: visibilities.private, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }});
     parse(test, 'function', 'uint add(uint x, uint y) { return x+y; }', { ntype: 'function', name: 'add', visibility: visibilities.private, type: types.uint, arguments: [ { ntype: 'argument', type: types.uint, name: 'x' }, { ntype: 'argument', type: types.uint, name: 'y' }], body: { ntype: 'sequence', nodes: [ { ntype: 'return', expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'x' }, right: { ntype: 'name', name: 'y' }}}] }});
 };
+
+exports['parse programs'] = function (test) {
+    parse(test, 'program', 'uint a; public void main() {}', { ntype: 'sequence', nodes: [ { ntype: 'variable', name: 'a', type: types.uint }, { ntype: 'function', name: 'main', visibility: visibilities.public, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }} ] });
+};
