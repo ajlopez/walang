@@ -27,6 +27,7 @@ compiled to WebAssembly. WIP.
 - [WebAssembly Use Cases](https://github.com/WebAssembly/design/blob/master/UseCases.md)
 - [Lys, a language that compiles to WebAssembly](https://lys-lang.dev/)
 - [Solving the structured control flow problem once and for all](https://medium.com/leaningtech/solving-the-structured-control-flow-problem-once-and-for-all-5123117b1ee2)
+- [Writing WebAssembly By Hand](https://blog.scottlogic.com/2018/04/26/webassembly-by-hand.html)
 
 ## Contribution
 
