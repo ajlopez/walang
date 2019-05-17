@@ -38,3 +38,12 @@ exports['process multiply integers'] = function (test) {
     test.deepEqual(result, [ 'i32.mul', [ 'i32.const 44' ], [ 'i32.const 2' ] ] );
 };
 
+exports['process bitwise and integers'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    const result = compiler.process(geast.binary('&', geast.constant(44), geast.constant(2)));
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.and', [ 'i32.const 44' ], [ 'i32.const 2' ] ] );
+};
+
