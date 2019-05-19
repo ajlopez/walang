@@ -65,3 +65,13 @@ exports['process bitwise xor integers'] = function (test) {
     test.deepEqual(result, [ 'i32.xor', [ 'i32.const 44' ], [ 'i32.const 2' ] ] );
 };
 
+exports['process load local variable'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.name('a');
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.equal(result, 'get_local $a');
+};
+

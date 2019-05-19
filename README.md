@@ -19,6 +19,7 @@ compiled to WebAssembly. WIP.
 
 - [Writing WebAssembly By Hand](https://blog.scottlogic.com/2018/04/26/webassembly-by-hand.html)
 - [Build your own WebAssembly Compiler](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html)
+- [Learning the Webassembly type system](https://maurobringolf.ch/2018/04/learning-the-webassembly-type-system/)
 - [WABT: The WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
 - [Understanding WebAssembly text format](https://developer.mozilla.org/en-US/docs/WebAssembly/Understanding_the_text_format)
 - [Dissecting a Minimum (Useful) Webassembly Module](https://webassemblycode.com/dissecting-minimum-useful-webassembly-module/)
