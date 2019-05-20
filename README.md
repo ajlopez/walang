@@ -30,6 +30,7 @@ compiled to WebAssembly. WIP.
 - [Lys, a language that compiles to WebAssembly](https://lys-lang.dev/)
 - [Solving the structured control flow problem once and for all](https://medium.com/leaningtech/solving-the-structured-control-flow-problem-once-and-for-all-5123117b1ee2)
 - [Execution](http://webassembly.github.io/spec/core/exec/index.html)
+- [Getting Started with AssemblyScript](https://www.sitepen.com/blog/getting-started-with-assemblyscript/)
 
 ## Contribution
 
