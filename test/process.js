@@ -75,3 +75,13 @@ exports['process load local variable'] = function (test) {
     test.equal(result, 'get_local $a');
 };
 
+exports['process set local variable'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.assign(geast.name('a'), geast.constant(42));
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, ['set_local $a', [ 'i32.const 42' ] ]);
+};
+
