@@ -85,3 +85,13 @@ exports['process set local variable'] = function (test) {
     test.deepEqual(result, ['set_local $a', [ 'i32.const 42' ] ]);
 };
 
+exports['process continue'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.continue();
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.equal(result, 'br 0');
+};
+
