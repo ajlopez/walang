@@ -1,0 +1,7 @@
+
+// simple add
+
+public uint add(uint a, uint b) { 
+    return a+b; 
+}
+
