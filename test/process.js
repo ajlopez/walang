@@ -83,6 +83,42 @@ exports['process not equal integers'] = function (test) {
     test.deepEqual(result, [ 'i32.ne', [ 'i32.const 44' ], [ 'i32.const 2' ] ] );
 };
 
+exports['process less signed integers'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    const result = compiler.process(geast.binary('<', geast.constant(44), geast.constant(2)));
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.lt_s', [ 'i32.const 44' ], [ 'i32.const 2' ] ] );
+};
+
+exports['process less equal signed integers'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    const result = compiler.process(geast.binary('<=', geast.constant(44), geast.constant(2)));
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.le_s', [ 'i32.const 44' ], [ 'i32.const 2' ] ] );
+};
+
+exports['process greater signed integers'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    const result = compiler.process(geast.binary('>', geast.constant(44), geast.constant(2)));
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.gt_s', [ 'i32.const 44' ], [ 'i32.const 2' ] ] );
+};
+
+exports['process greater equal signed integers'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    const result = compiler.process(geast.binary('>=', geast.constant(44), geast.constant(2)));
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.ge_s', [ 'i32.const 44' ], [ 'i32.const 2' ] ] );
+};
+
 exports['process load local variable'] = function (test) {
     const compiler = compilers.compiler();
     const node = geast.name('a');
