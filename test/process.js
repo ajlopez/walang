@@ -160,6 +160,15 @@ exports['process continue'] = function (test) {
     test.deepEqual(result, [ 'br', 0 ]);
 };
 
+exports['process void function without arguments'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.function('foo', types.void, [], geast.sequence([ geast.constant(42) ]), visibilities.public);
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'func', '$foo', [ 'i32.const', 42 ] ]);
+};
+
 exports['process function without arguments'] = function (test) {
     const compiler = compilers.compiler();
     const node = geast.function('foo', types.int, [], geast.sequence([ geast.constant(42) ]), visibilities.public);
