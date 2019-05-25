@@ -158,3 +158,13 @@ exports['process continue'] = function (test) {
     test.equal(result, 'br 0');
 };
 
+exports['process function without arguments'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.function('foo', 'int', [], geast.sequence([ geast.constant(42) ]), 'public');
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'func $foo', [ 'result i32' ], 'i32.const 42' ]);
+};
+
