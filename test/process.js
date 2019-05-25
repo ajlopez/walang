@@ -169,7 +169,16 @@ exports['process void function without arguments'] = function (test) {
     test.deepEqual(result, [ 'func', '$foo', [ 'i32.const', 42 ] ]);
 };
 
-exports['process function without arguments'] = function (test) {
+exports['process uint function without arguments'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.function('foo', types.uint, [], geast.sequence([ geast.constant(42) ]), visibilities.public);
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'func', '$foo', [ 'result', 'i32' ], [ 'i32.const', 42 ] ]);
+};
+
+exports['process int function without arguments'] = function (test) {
     const compiler = compilers.compiler();
     const node = geast.function('foo', types.int, [], geast.sequence([ geast.constant(42) ]), visibilities.public);
     const result = compiler.process(node);
