@@ -1,6 +1,7 @@
 
 const compilers = require('../lib/compilers');
 const types = require('../lib/types');
+const visibilities = require('../lib/visibilities');
 const geast = require('geast');
 
 exports['process integer constant'] = function (test) {
@@ -161,8 +162,7 @@ exports['process continue'] = function (test) {
 
 exports['process function without arguments'] = function (test) {
     const compiler = compilers.compiler();
-    const node = geast.function('foo', types.int, [], geast.sequence([ geast.constant(42) ]), 'public');
-    
+    const node = geast.function('foo', types.int, [], geast.sequence([ geast.constant(42) ]), visibilities.public);
     const result = compiler.process(node);
     
     test.ok(result);
@@ -171,11 +171,13 @@ exports['process function without arguments'] = function (test) {
 
 exports['process function with arguments'] = function (test) {
     const compiler = compilers.compiler();
-    const node = geast.function('add', types.int, [ geast.argument('a', types.int), geast.argument('b', types.int)], geast.sequence([ geast.binary('+', geast.name('a'), geast.name('b')) ]), 'public');
+    const node = geast.function('add', types.int, [ geast.argument('a', types.int), geast.argument('b', types.int)], geast.sequence([ geast.binary('+', geast.name('a'), geast.name('b')) ]), visibilities.public);
     
     const result = compiler.process(node);
     
     test.ok(result);
     test.deepEqual(result, [ 'func', '$add', [ 'param', '$a', 'i32' ], [ 'param', '$b', 'i32' ], [ 'result', 'i32' ], [ 'i32.add', [ 'get_local', '$a' ], [ 'get_local', '$b' ] ] ]);
+    
+    test.equal(compiler.exports().length, 1);
 };
 
