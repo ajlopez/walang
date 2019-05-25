@@ -26,6 +26,7 @@
     "gepars": "0.0.5"
   },
   "devDependencies": {
-    "simpleunit": "0.0.8"
+    "simpleunit": "0.0.8",
+    "wabt": "^1.0.10"
   }
 }
