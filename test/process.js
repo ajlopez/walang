@@ -196,6 +196,15 @@ exports['process long function without arguments'] = function (test) {
     test.deepEqual(result, [ 'func', '$foo', [ 'result', 'i64' ], [ 'i32.const', 42 ] ]);
 };
 
+exports['process ulong function without arguments'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.function('foo', types.ulong, [], geast.sequence([ geast.constant(42) ]), visibilities.public);
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'func', '$foo', [ 'result', 'i64' ], [ 'i32.const', 42 ] ]);
+};
+
 exports['process function with arguments'] = function (test) {
     const compiler = compilers.compiler();
     const node = geast.function('add', types.int, [ geast.argument('a', types.int), geast.argument('b', types.int)], geast.sequence([ geast.binary('+', geast.name('a'), geast.name('b')) ]), visibilities.public);
