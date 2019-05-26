@@ -13,40 +13,84 @@ exports['process integer constant'] = function (test) {
     test.deepEqual(result, [ 'i32.const',  42 ]);
 };
 
-exports['process add integers'] = function (test) {
+exports['process add unsigned integers'] = function (test) {
     const compiler = compilers.compiler();
-    
-    const result = compiler.process(geast.binary('+', geast.constant(40), geast.constant(2)));
+    const node = geast.binary('+', geast.constant(40, types.uint), geast.constant(2, types.uint));
+    const result = compiler.process(node);
     
     test.ok(result);
     test.deepEqual(result, [ 'i32.add', [ 'i32.const', 40 ], [ 'i32.const', 2 ] ] );
+    test.equal(node.type(), types.uint);
 };
 
-exports['process subtract integers'] = function (test) {
+exports['process add signed integers'] = function (test) {
     const compiler = compilers.compiler();
+    const node = geast.binary('+', geast.constant(44, types.uint), geast.constant(-2, types.int));
+    const result = compiler.process(node);
     
-    const result = compiler.process(geast.binary('-', geast.constant(44), geast.constant(2)));
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.add', [ 'i32.const', 44 ], [ 'i32.const', -2 ] ] );
+    test.equal(node.type(), types.int);
+};
+
+exports['process subtract unsigned integers'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.binary('-', geast.constant(44, types.uint), geast.constant(2, types.uint));
+    const result = compiler.process(node);
     
     test.ok(result);
     test.deepEqual(result, [ 'i32.sub', [ 'i32.const',  44 ], [ 'i32.const',  2 ] ] );
+    test.equal(node.type(), types.uint);
 };
 
-exports['process multiply integers'] = function (test) {
+exports['process subtract signed integers'] = function (test) {
     const compiler = compilers.compiler();
+    const node = geast.binary('-', geast.constant(44, types.int), geast.constant(2, types.int));
+    const result = compiler.process(node);
     
-    const result = compiler.process(geast.binary('*', geast.constant(44), geast.constant(2)));
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.sub', [ 'i32.const',  44 ], [ 'i32.const',  2 ] ] );
+    test.equal(node.type(), types.int);
+};
+
+exports['process multiply unsigned integers'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.binary('*', geast.constant(44, types.uint), geast.constant(2, types.uint));
+    const result = compiler.process(node);
     
     test.ok(result);
     test.deepEqual(result, [ 'i32.mul', [ 'i32.const', 44 ], [ 'i32.const',  2 ] ] );
+    test.equal(node.type(), types.uint);
+};
+
+exports['process multiply signed integers'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.binary('*', geast.constant(44, types.int), geast.constant(2, types.int));
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.mul', [ 'i32.const', 44 ], [ 'i32.const',  2 ] ] );
+    test.equal(node.type(), types.int);
+};
+
+exports['process divide unsigned integers'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.binary('/', geast.constant(44, types.uint), geast.constant(2, types.uint));
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.div_u', [ 'i32.const', 44 ], [ 'i32.const', 2 ] ] );
+    test.equal(node.type(), types.uint);
 };
 
 exports['process divide signed integers'] = function (test) {
     const compiler = compilers.compiler();
-    
-    const result = compiler.process(geast.binary('/', geast.constant(44), geast.constant(2)));
+    const node = geast.binary('/', geast.constant(44), geast.constant(2));
+    const result = compiler.process(node);
     
     test.ok(result);
     test.deepEqual(result, [ 'i32.div_s', [ 'i32.const', 44 ], [ 'i32.const', 2 ] ] );
+    test.equal(node.type(), types.int);
 };
 
 exports['process bitwise and integers'] = function (test) {
