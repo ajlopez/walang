@@ -9,19 +9,20 @@ function parse(test, type, text, expected) {
 }
 
 exports['parse constants'] = function (test) {
-    parse(test, 'integer', '42', { ntype: 'constant', value: 42 });
-    parse(test, 'real', '3.14159', { ntype: 'constant', value: 3.14159 });
-    parse(test, 'string', '"foo"', { ntype: 'constant', value: 'foo' });
-    parse(test, 'boolean', 'true', { ntype: 'constant', value: true });
-    parse(test, 'boolean', 'false', { ntype: 'constant', value: false });
+    parse(test, 'integer', '42', { ntype: 'constant', value: 42, type: types.uint });
+    parse(test, 'integer', '-3', { ntype: 'constant', value: -3, type: types.int });
+    parse(test, 'real', '3.14159', { ntype: 'constant', value: 3.14159, type: types.float });
+    parse(test, 'string', '"foo"', { ntype: 'constant', value: 'foo', type: types.string });
+    parse(test, 'boolean', 'true', { ntype: 'constant', value: true, type: types.bool });
+    parse(test, 'boolean', 'false', { ntype: 'constant', value: false, type: types.bool });
 };
 
 exports['parse terms'] = function (test) {
-    parse(test, 'term', '42', { ntype: 'constant', value: 42 });
-    parse(test, 'term', '3.14159', { ntype: 'constant', value: 3.14159 });
-    parse(test, 'term', '"foo"', { ntype: 'constant', value: 'foo' });
-    parse(test, 'term', 'true', { ntype: 'constant', value: true });
-    parse(test, 'term', 'false', { ntype: 'constant', value: false });
+    parse(test, 'term', '42', { ntype: 'constant', value: 42, type: types.uint });
+    parse(test, 'term', '3.14159', { ntype: 'constant', value: 3.14159, type: types.float });
+    parse(test, 'term', '"foo"', { ntype: 'constant', value: 'foo', type: types.string });
+    parse(test, 'term', 'true', { ntype: 'constant', value: true, type: types.bool });
+    parse(test, 'term', 'false', { ntype: 'constant', value: false, type: types.bool });
     parse(test, 'term', 'answer', { ntype: 'name', name: 'answer' });
 };
 
@@ -42,25 +43,25 @@ exports['parse visibilities'] = function (test) {
 };
 
 exports['parse arithmetic expressions'] = function (test) {
-    parse(test, 'expression', '40+2', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '20*2+2', { ntype: 'binary', operator: '+', left: { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 20 }, right: { ntype: 'constant', value: 2 }}, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '80/2+2', { ntype: 'binary', operator: '+', left: { ntype: 'binary', operator: '/', left: { ntype: 'constant', value: 80 }, right: { ntype: 'constant', value: 2 }}, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '2+2*20', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 2 }, right: { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 2 }, right: { ntype: 'constant', value: 20 }}});
-    parse(test, 'expression', '2+80/2', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 2 }, right: { ntype: 'binary', operator: '/', left: { ntype: 'constant', value: 80 }, right: { ntype: 'constant', value: 2 }}});
-    parse(test, 'expression', '44-2', { ntype: 'binary', operator: '-', left: { ntype: 'constant', value: 44 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '21*2', { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 21 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '84/2', { ntype: 'binary', operator: '/', left: { ntype: 'constant', value: 84 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '(40+2)', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
+    parse(test, 'expression', '40+2', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 40, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '20*2+2', { ntype: 'binary', operator: '+', left: { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 20, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }}, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '80/2+2', { ntype: 'binary', operator: '+', left: { ntype: 'binary', operator: '/', left: { ntype: 'constant', value: 80, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }}, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '2+2*20', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 2, type: types.uint }, right: { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 2, type: types.uint }, right: { ntype: 'constant', value: 20, type: types.uint }}});
+    parse(test, 'expression', '2+80/2', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 2, type: types.uint }, right: { ntype: 'binary', operator: '/', left: { ntype: 'constant', value: 80, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }}});
+    parse(test, 'expression', '44-2', { ntype: 'binary', operator: '-', left: { ntype: 'constant', value: 44, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '21*2', { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 21, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '84/2', { ntype: 'binary', operator: '/', left: { ntype: 'constant', value: 84, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '(40+2)', { ntype: 'binary', operator: '+', left: { ntype: 'constant', value: 40, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
 };
 
 exports['parse comparison expressions'] = function (test) {
-    parse(test, 'expression', '40<2', { ntype: 'binary', operator: '<', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '40<=2', { ntype: 'binary', operator: '<=', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '40>2', { ntype: 'binary', operator: '>', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '40>=2', { ntype: 'binary', operator: '>=', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '40==2', { ntype: 'binary', operator: '==', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '40!=2', { ntype: 'binary', operator: '!=', left: { ntype: 'constant', value: 40 }, right: { ntype: 'constant', value: 2 }});
-    parse(test, 'expression', '40<2*40', { ntype: 'binary', operator: '<', left: { ntype: 'constant', value: 40 }, right: { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 2 }, right: { ntype: 'constant', value: 40 } }});
+    parse(test, 'expression', '40<2', { ntype: 'binary', operator: '<', left: { ntype: 'constant', value: 40, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '40<=2', { ntype: 'binary', operator: '<=', left: { ntype: 'constant', value: 40, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '40>2', { ntype: 'binary', operator: '>', left: { ntype: 'constant', value: 40, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '40>=2', { ntype: 'binary', operator: '>=', left: { ntype: 'constant', value: 40, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '40==2', { ntype: 'binary', operator: '==', left: { ntype: 'constant', value: 40, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '40!=2', { ntype: 'binary', operator: '!=', left: { ntype: 'constant', value: 40, type: types.uint }, right: { ntype: 'constant', value: 2, type: types.uint }});
+    parse(test, 'expression', '40<2*40', { ntype: 'binary', operator: '<', left: { ntype: 'constant', value: 40, type: types.uint }, right: { ntype: 'binary', operator: '*', left: { ntype: 'constant', value: 2, type: types.uint }, right: { ntype: 'constant', value: 40, type: types.uint } }});
 };
 
 exports['parse variable declarations'] = function (test) {
@@ -74,27 +75,27 @@ exports['parse variable declarations'] = function (test) {
 };
 
 exports['parse assign command'] = function (test) {
-    parse(test, 'command', 'a = 42;', { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }});
+    parse(test, 'command', 'a = 42;', { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42, type: types.uint }});
 };
 
 exports['parse composite commands'] = function (test) {
     parse(test, 'command', '{}', { ntype: 'sequence', nodes: [] });
-    parse(test, 'command', '{ a = 42; }', { ntype: 'sequence', nodes: [ { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }} ] });
-    parse(test, 'command', '{ a = 42; b = 1; }', { ntype: 'sequence', nodes: [ { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }}, { ntype: 'assign', lefthand: { ntype: 'name', name: 'b' }, expression: { ntype: 'constant', value: 1 }} ] });
+    parse(test, 'command', '{ a = 42; }', { ntype: 'sequence', nodes: [ { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42, type: types.uint }} ] });
+    parse(test, 'command', '{ a = 42; b = 1; }', { ntype: 'sequence', nodes: [ { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42, type: types.uint }}, { ntype: 'assign', lefthand: { ntype: 'name', name: 'b' }, expression: { ntype: 'constant', value: 1, type: types.uint }} ] });
     parse(test, 'command', '{ return x+y; }', { ntype: 'sequence', nodes: [ { ntype: 'return', expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'x' }, right: { ntype: 'name', name: 'y' } } } ]});
 };
 
 exports['parse if command'] = function (test) {
-    parse(test, 'command', 'if (b) a = 42;', { ntype: 'conditional', condition: { ntype: 'name', name: 'b' }, then: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }}});
-    parse(test, 'command', 'if (b) a = 42; else a = 1;', { ntype: 'conditional', condition: { ntype: 'name', name: 'b' }, then: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42 }}, else: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 1 }}});
+    parse(test, 'command', 'if (b) a = 42;', { ntype: 'conditional', condition: { ntype: 'name', name: 'b' }, then: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42, type: types.uint }}});
+    parse(test, 'command', 'if (b) a = 42; else a = 1;', { ntype: 'conditional', condition: { ntype: 'name', name: 'b' }, then: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42, type: types.uint }}, else: { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 1, type: types.uint }}});
 };
 
 exports['parse while command'] = function (test) {
-    parse(test, 'command', 'while (k < 10) k = k + 1;', { ntype: 'loop', condition: { ntype: 'binary', operator: '<', left: { ntype: 'name', name: 'k' }, right: { ntype: 'constant', value: 10 } }, body: { ntype: 'assign', lefthand: { ntype: 'name', name: 'k' }, expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'k' }, right: { ntype: 'constant', value: 1 }  }}});
+    parse(test, 'command', 'while (k < 10) k = k + 1;', { ntype: 'loop', condition: { ntype: 'binary', operator: '<', left: { ntype: 'name', name: 'k' }, right: { ntype: 'constant', value: 10, type: types.uint } }, body: { ntype: 'assign', lefthand: { ntype: 'name', name: 'k' }, expression: { ntype: 'binary', operator: '+', left: { ntype: 'name', name: 'k' }, right: { ntype: 'constant', value: 1, type: types.uint }  }}});
 };
 
 exports['parse return command'] = function (test) {
-    parse(test, 'command', 'return 42;', { ntype: 'return', expression: { ntype: 'constant', value: 42 } });
+    parse(test, 'command', 'return 42;', { ntype: 'return', expression: { ntype: 'constant', value: 42, type: types.uint } });
 };
 
 exports['parse functions'] = function (test) {
@@ -107,3 +108,4 @@ exports['parse functions'] = function (test) {
 exports['parse programs'] = function (test) {
     parse(test, 'program', 'uint a; public void main() {}', { ntype: 'sequence', nodes: [ { ntype: 'variable', name: 'a', type: types.uint }, { ntype: 'function', name: 'main', visibility: visibilities.public, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }} ] });
 };
+
