@@ -4,13 +4,22 @@ const types = require('../lib/types');
 const visibilities = require('../lib/visibilities');
 const geast = require('geast');
 
-exports['process integer constant'] = function (test) {
+exports['process unsigned integer constant'] = function (test) {
     const compiler = compilers.compiler();
     
-    const result = compiler.process(geast.constant(42));
+    const result = compiler.process(geast.constant(42, types.uint));
     
     test.ok(result);
     test.deepEqual(result, [ 'i32.const',  42 ]);
+};
+
+exports['process signed long integer constant'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    const result = compiler.process(geast.constant(42, types.long));
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i64.const',  42 ]);
 };
 
 exports['process add unsigned integers'] = function (test) {
@@ -31,6 +40,26 @@ exports['process add signed integers'] = function (test) {
     test.ok(result);
     test.deepEqual(result, [ 'i32.add', [ 'i32.const', 44 ], [ 'i32.const', -2 ] ] );
     test.equal(node.type(), types.int);
+};
+
+exports['process add unsigned long integers'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.binary('+', geast.constant(40, types.ulong), geast.constant(2, types.ulong));
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i64.add', [ 'i64.const', 40 ], [ 'i64.const', 2 ] ] );
+    test.equal(node.type(), types.ulong);
+};
+
+exports['process add signed long integers'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.binary('+', geast.constant(44, types.long), geast.constant(-2, types.long));
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i64.add', [ 'i64.const', 44 ], [ 'i64.const', -2 ] ] );
+    test.equal(node.type(), types.long);
 };
 
 exports['process subtract unsigned integers'] = function (test) {
