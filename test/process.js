@@ -233,6 +233,16 @@ exports['process continue'] = function (test) {
     test.deepEqual(result, [ 'br', 0 ]);
 };
 
+exports['process conditional with then'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.conditional(geast.constant(42, types.uint), geast.constant(1, types.uint));
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'if', [ 'i32.const', 42 ], [ 'then', [ 'i32.const', 1 ] ] ]);
+};
+
 exports['process void function without arguments'] = function (test) {
     const compiler = compilers.compiler();
     const node = geast.function('foo', types.void, [], geast.sequence([ geast.constant(42) ]), visibilities.public);
