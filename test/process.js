@@ -253,6 +253,16 @@ exports['process conditional with then and else'] = function (test) {
     test.deepEqual(result, [ 'if', [ 'i32.const', 42 ], [ 'then', [ 'i32.const', 1 ] ], [ 'else', [ 'i32.const', 2 ] ] ]);
 };
 
+exports['process conditional with composite then and composite else'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.conditional(geast.constant(42, types.uint), geast.sequence([ geast.constant(1, types.uint), geast.constant(2, types.uint) ]), geast.sequence([ geast.constant(3, types.uint), geast.constant(4, types.uint) ]));
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'if', [ 'i32.const', 42 ], [ 'then', [ 'i32.const', 1 ], [ 'i32.const', 2 ] ], [ 'else', [ 'i32.const', 3 ], [ 'i32.const', 4 ] ] ]);
+};
+
 exports['process void function without arguments'] = function (test) {
     const compiler = compilers.compiler();
     const node = geast.function('foo', types.void, [], geast.sequence([ geast.constant(42) ]), visibilities.public);
