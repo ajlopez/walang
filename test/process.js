@@ -4,6 +4,24 @@ const types = require('../lib/types');
 const visibilities = require('../lib/visibilities');
 const geast = require('geast');
 
+exports['process true constant'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    const result = compiler.process(geast.constant(true, types.bool));
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.const',  1 ]);
+};
+
+exports['process false constant'] = function (test) {
+    const compiler = compilers.compiler();
+    
+    const result = compiler.process(geast.constant(false, types.bool));
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'i32.const',  0 ]);
+};
+
 exports['process unsigned integer constant'] = function (test) {
     const compiler = compilers.compiler();
     
