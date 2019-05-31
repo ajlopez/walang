@@ -251,6 +251,16 @@ exports['process continue'] = function (test) {
     test.deepEqual(result, [ 'br', 0 ]);
 };
 
+exports['process loop'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.loop(geast.constant(42, types.uint), geast.constant(1, types.uint));
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'loop', [ 'if', [ 'i32.eqz', [ 'i32.const', 42 ] ], [ 'then', [ 'br', 1 ] ] ], [ 'i32.const', 1 ], [ 'br', 0 ]]);
+};
+
 exports['process conditional with then'] = function (test) {
     const compiler = compilers.compiler();
     const node = geast.conditional(geast.constant(42, types.uint), geast.constant(1, types.uint));
