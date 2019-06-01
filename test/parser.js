@@ -74,6 +74,16 @@ exports['parse variable declarations'] = function (test) {
     parse(test, 'command', 'bool a;', { ntype: 'variable', name: 'a', type: types.bool });
 };
 
+exports['parse variable initializations'] = function (test) {
+    parse(test, 'command', 'int a = 42;', { ntype: 'variable', name: 'a', type: types.int, expression: { ntype: 'constant', value: 42, type: types.uint }});
+    parse(test, 'command', 'uint a = 42;', { ntype: 'variable', name: 'a', type: types.uint, expression: { ntype: 'constant', value: 42, type: types.uint } });
+    parse(test, 'command', 'long a = 1;', { ntype: 'variable', name: 'a', type: types.long, expression: { ntype: 'constant', value: 1, type: types.uint } });
+    parse(test, 'command', 'ulong a = 1;', { ntype: 'variable', name: 'a', type: types.ulong, expression: { ntype: 'constant', value: 1, type: types.uint } });
+    parse(test, 'command', 'float a = 1.2;', { ntype: 'variable', name: 'a', type: types.float, expression: { ntype: 'constant', value: 1.2, type: types.float } });
+    parse(test, 'command', 'double a = 3.1415;', { ntype: 'variable', name: 'a', type: types.double, expression: { ntype: 'constant', value: 3.1415, type: types.float } });
+    parse(test, 'command', 'bool a = true;', { ntype: 'variable', name: 'a', type: types.bool, expression: { ntype: 'constant', value: true, type: types.bool } });
+};
+
 exports['parse assign command'] = function (test) {
     parse(test, 'command', 'a = 42;', { ntype: 'assign', lefthand: { ntype: 'name', name: 'a' }, expression: { ntype: 'constant', value: 42, type: types.uint }});
 };
