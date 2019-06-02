@@ -348,3 +348,13 @@ exports['process function with arguments'] = function (test) {
     test.equal(compiler.exports().length, 1);
 };
 
+exports['process integer signed variable declaration'] = function(test) {
+    const compiler = compilers.compiler();
+    const node = geast.variable('a', types.int);;
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'local', '$a', 'i32' ]);    
+};
+
