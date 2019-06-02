@@ -358,6 +358,16 @@ exports['process integer signed variable declaration'] = function(test) {
     test.deepEqual(result, [ 'local', '$a', 'i32' ]);    
 };
 
+exports['process integer signed variable declaration and initialization'] = function(test) {
+    const compiler = compilers.compiler();
+    const node = geast.variable('a', types.int, geast.constant(42, types.int));
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ [ 'local', '$a', 'i32' ], [ 'set_local', '$a', [ 'i32.const', 42 ] ] ]);    
+};
+
 exports['process boolean variable declaration'] = function(test) {
     const compiler = compilers.compiler();
     const node = geast.variable('a', types.bool);
