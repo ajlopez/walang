@@ -398,6 +398,16 @@ exports['process integer unsigned variable declaration and initialization'] = fu
     test.deepEqual(result, [ [ 'local', '$a', 'i32' ], [ 'set_local', '$a', [ 'i32.const', 42 ] ] ]);    
 };
 
+exports['process integer unsigned variable declaration and initialization inside a sequence'] = function(test) {
+    const compiler = compilers.compiler();
+    const node = geast.sequence([ geast.variable('a', types.uint, geast.constant(42)) ]);
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ [ 'local', '$a', 'i32' ], [ 'set_local', '$a', [ 'i32.const', 42 ] ] ]);    
+};
+
 exports['process boolean variable declaration'] = function(test) {
     const compiler = compilers.compiler();
     const node = geast.variable('a', types.bool);
