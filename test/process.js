@@ -368,6 +368,36 @@ exports['process integer signed variable declaration and initialization'] = func
     test.deepEqual(result, [ [ 'local', '$a', 'i32' ], [ 'set_local', '$a', [ 'i32.const', 42 ] ] ]);    
 };
 
+exports['process long integer signed variable declaration and initialization'] = function(test) {
+    const compiler = compilers.compiler();
+    const node = geast.variable('a', types.long, geast.constant(42, types.int));
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ [ 'local', '$a', 'i64' ], [ 'set_local', '$a', [ 'i32.const', 42 ] ] ]);    
+};
+
+exports['process long integer unsigned variable declaration and initialization'] = function(test) {
+    const compiler = compilers.compiler();
+    const node = geast.variable('a', types.ulong, geast.constant(42, types.int));
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ [ 'local', '$a', 'i64' ], [ 'set_local', '$a', [ 'i32.const', 42 ] ] ]);    
+};
+
+exports['process integer unsigned variable declaration and initialization'] = function(test) {
+    const compiler = compilers.compiler();
+    const node = geast.variable('a', types.uint, geast.constant(42));
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ [ 'local', '$a', 'i32' ], [ 'set_local', '$a', [ 'i32.const', 42 ] ] ]);    
+};
+
 exports['process boolean variable declaration'] = function(test) {
     const compiler = compilers.compiler();
     const node = geast.variable('a', types.bool);
