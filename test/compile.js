@@ -36,11 +36,13 @@ exports['compile file add program'] = function (test) {
 exports['compile file factorial program'] = function (test) {
     const filename = path.join(__dirname, 'files', 'factorial.wal');
     
+    const expected = '(func $factorial\r\n  (param $n i32)\r\n  (result i32)\r\n  (local $result i32)\r\n  (set_local $result\r\n    (i32.const 1)\r\n  )\r\n  (loop\r\n    (if\r\n      (i32.eqz\r\n        (i32.gt_s\r\n          (get_local $n)\r\n          (i32.const 1)\r\n        )\r\n      )\r\n      (then\r\n        (br 1)\r\n      )\r\n    )\r\n    (set_local $result\r\n      (i32.mul\r\n        (get_local $result)\r\n        (get_local $n)\r\n      )\r\n    )\r\n    (set_local $n\r\n      (i32.sub\r\n        (get_local $n)\r\n        (i32.const 1)\r\n      )\r\n    )\r\n    (br 0)\r\n  )\r\n  (get_local $result)\r\n)\r\n(export "factorial"\r\n  (func $factorial)\r\n)\r\n';
+    
     const code = walang.compileFile(filename);
-    console.log(code);
+ 
     test.ok(code);
     test.equal(typeof code, 'string');    
-    test.equal(code, '(func $factorial\r\n  (param $n i32)\r\n  (result i32)\r\n  (local $result i32)\r\n  (set_local $result\r\n    (i32.const 1)\r\n  )\r\n      (i32.eqz\r\n        (i32.gt_s\r\n          (get_local $n)\r\n          (i32.const 1)\r\n      )\r\n      (then\r\n        (br 1)\r\n    )\r\n    (set_local $result\r\n      (i32.mul\r\n        (get_local $result)\r\n        (get_local $n)\r\n      )\r\n    )\r\n    (set_local $n\r\n      (i32.sub\r\n        (get_local $n)\r\n        (i32.const 1)\r\n      )\r\n    )\r\n    (br 0)\r\n  )\r\n  (get_local $result)\r\n)\r\n(export "factorial"\r\n  (func $factorial)\r\n)\r\n');
+    test.equal(code, expected);
 };
 
 exports['compile program to binary and run add function'] = async function (test) {
