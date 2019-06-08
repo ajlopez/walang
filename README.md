@@ -17,6 +17,7 @@ compiled to WebAssembly. WIP.
 
 ## References
 
+- [WebAssembly Semantics](https://github.com/WebAssembly/design/blob/master/Semantics.md)
 - [Writing WebAssembly By Hand](https://blog.scottlogic.com/2018/04/26/webassembly-by-hand.html)
 - [Build your own WebAssembly Compiler](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html)
 - [Learning the Webassembly type system](https://maurobringolf.ch/2018/04/learning-the-webassembly-type-system/)
