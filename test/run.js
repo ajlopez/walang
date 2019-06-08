@@ -4,6 +4,8 @@ const walang = require('..');
 const path = require('path');
 const wabt = require('wabt')();
 
+const fs = require('fs');
+
 exports['compile program to binary and run add function'] = async function (test) {
     test.async();
     
@@ -32,7 +34,10 @@ exports['compile program to binary and run factorial function'] = async function
     
     const filename = path.join(__dirname, 'files', 'factorial.wal');
     const code = walang.compileFile(filename);
-
+    //const code = fs.readFileSync(filename).toString();
+    
+    console.log(code);
+    
     const wasmModule = wabt.parseWat('factorial.wal', code);
     
     test.ok(wasmModule);
@@ -42,8 +47,9 @@ exports['compile program to binary and run factorial function'] = async function
     const module = await WebAssembly.compile(new Buffer(buffer));
     const instance = await WebAssembly.instantiate(module);
     
-    //const result = instance.exports.factorial(3);
+    const result = instance.exports.factorial(4);
     
+    console.log(result);
     //test.equal(result, 6);
     
     test.done();

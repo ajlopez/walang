@@ -258,7 +258,7 @@ exports['process loop'] = function (test) {
     const result = compiler.process(node);
     
     test.ok(result);
-    test.deepEqual(result, [ 'loop', [ 'if', [ 'i32.eqz', [ 'i32.const', 42 ] ], [ 'then', [ 'br', 1 ] ] ], [ 'i32.const', 1 ], [ 'br', 0 ]]);
+    test.deepEqual(result, [ 'block', [ 'loop', [ 'if', [ 'i32.eqz', [ 'i32.const', 42 ] ], [ 'then', [ 'br', 2 ] ] ], [ 'i32.const', 1 ], [ 'br', 0 ]]]);
 };
 
 exports['process conditional with then'] = function (test) {
