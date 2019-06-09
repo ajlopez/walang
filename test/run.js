@@ -34,9 +34,6 @@ exports['compile program to binary and run factorial function'] = async function
     
     const filename = path.join(__dirname, 'files', 'factorial.wal');
     const code = walang.compileFile(filename);
-    //const code = fs.readFileSync(filename).toString();
-    
-    console.log(code);
     
     const wasmModule = wabt.parseWat('factorial.wal', code);
     
@@ -49,8 +46,7 @@ exports['compile program to binary and run factorial function'] = async function
     
     const result = instance.exports.factorial(4);
     
-    console.log(result);
-    //test.equal(result, 6);
+    test.equal(result, 24);
     
     test.done();
 };
