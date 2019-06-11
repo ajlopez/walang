@@ -108,6 +108,10 @@ exports['parse return command'] = function (test) {
     parse(test, 'command', 'return 42;', { ntype: 'return', expression: { ntype: 'constant', value: 42, type: types.uint } });
 };
 
+exports['parse break command'] = function (test) {
+    parse(test, 'command', 'break;', { ntype: 'break' });
+};
+
 exports['parse functions'] = function (test) {
     parse(test, 'function', 'public void main() {}', { ntype: 'function', name: 'main', visibility: visibilities.public, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }});
     parse(test, 'function', 'private void main() {}', { ntype: 'function', name: 'main', visibility: visibilities.private, type: types.void, arguments: [], body: { ntype: 'sequence', nodes: [] }});
