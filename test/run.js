@@ -51,3 +51,25 @@ exports['compile program to binary and run factorial function'] = async function
     test.done();
 };
 
+exports['compile program to binary and run factorial function with break'] = async function (test) {
+    test.async();
+    
+    const filename = path.join(__dirname, 'files', 'factorial2.wal');
+    const code = walang.compileFile(filename);
+    
+    const wasmModule = wabt.parseWat('factorial2.wal', code);
+    
+    test.ok(wasmModule);
+    
+    const { buffer } = wasmModule.toBinary({});
+    
+    const module = await WebAssembly.compile(new Buffer(buffer));
+    const instance = await WebAssembly.instantiate(module);
+    
+    const result = instance.exports.factorial(4);
+    
+    test.equal(result, 24);
+    
+    test.done();
+};
+
