@@ -251,6 +251,16 @@ exports['process continue'] = function (test) {
     test.deepEqual(result, [ 'br', 0 ]);
 };
 
+exports['process break'] = function (test) {
+    const compiler = compilers.compiler();
+    const node = geast.break();
+    
+    const result = compiler.process(node);
+    
+    test.ok(result);
+    test.deepEqual(result, [ 'br', 2 ]);
+};
+
 exports['process loop'] = function (test) {
     const compiler = compilers.compiler();
     const node = geast.loop(geast.constant(42, types.uint), geast.constant(1, types.uint));
