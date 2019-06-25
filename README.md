@@ -35,6 +35,8 @@ compiled to WebAssembly. WIP.
 - [Execution](http://webassembly.github.io/spec/core/exec/index.html)
 - [Getting Started with AssemblyScript](https://www.sitepen.com/blog/getting-started-with-assemblyscript/)
 - [Compiling C to WebAssembly without Emscripten](https://dassur.ma/things/c-to-webassembly/)
+- [Three myths about WebAssembly](https://blog.ghaiklor.com/2019/06/18/three-myths-about-webassembly/)
+- [Wasm by Example](https://wasmbyexample.dev/)
 
 ## Contribution
 
