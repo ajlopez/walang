@@ -37,6 +37,7 @@ compiled to WebAssembly. WIP.
 - [Compiling C to WebAssembly without Emscripten](https://dassur.ma/things/c-to-webassembly/)
 - [Three myths about WebAssembly](https://blog.ghaiklor.com/2019/06/18/three-myths-about-webassembly/)
 - [Wasm by Example](https://wasmbyexample.dev/)
+- [The h Programming Language](https://christine.website/blog/h-language-2019-06-30)
 
 ## Contribution
 
