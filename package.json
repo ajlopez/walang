@@ -23,7 +23,7 @@
   "dependencies": {
     "geast": "0.0.9",
     "gelex": "0.0.5",
-    "gepars": "0.0.5"
+    "gepars": "0.0.7"
   },
   "devDependencies": {
     "simpleunit": "0.0.8",
