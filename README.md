@@ -38,6 +38,8 @@ compiled to WebAssembly. WIP.
 - [Three myths about WebAssembly](https://blog.ghaiklor.com/2019/06/18/three-myths-about-webassembly/)
 - [Wasm by Example](https://wasmbyexample.dev/)
 - [The h Programming Language](https://christine.website/blog/h-language-2019-06-30)
+- [Build Your Own WebAssembly Compiler](https://www.infoq.com/presentations/webassembly-compiler/)
+- [Build your own WebAssembly Compiler](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html)
 
 ## Contribution
 
