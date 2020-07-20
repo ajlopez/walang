@@ -1,9 +1,9 @@
 
-var n = require('../lib/nodes');
-var t = require('../lib/types');
+const n = require('../lib/nodes');
+const t = require('../lib/types');
 
 exports['integer constant node'] = function (test) {
-    var node = n.constant(10, t.int);
+    const node = n.constant(10, t.int);
     
     test.ok(node);
     test.equal(typeof node, 'object');
@@ -12,7 +12,7 @@ exports['integer constant node'] = function (test) {
 };
 
 exports['name node'] = function (test) {
-    var node = n.name('v');
+    const node = n.name('v');
     
     test.ok(node);
     test.equal(typeof node, 'object');
@@ -20,7 +20,7 @@ exports['name node'] = function (test) {
 };
 
 exports['variable node'] = function (test) {
-    var node = n.variable('v', t.int);
+    const node = n.variable('v', t.int);
     
     test.ok(node);
     test.equal(typeof node, 'object');
@@ -29,7 +29,7 @@ exports['variable node'] = function (test) {
 };
 
 exports['binary operator node'] = function (test) {
-    var node = n.binary('+', n.constant(40, t.int), n.constant(2, t.int));
+    const node = n.binary('+', n.constant(40, t.int), n.constant(2, t.int));
     
     test.ok(node);
 
@@ -43,7 +43,7 @@ exports['binary operator node'] = function (test) {
 };
 
 exports['unary operator node'] = function (test) {
-    var node = n.unary('-', n.constant(42, t.int));
+    const node = n.unary('-', n.constant(42, t.int));
     
     test.ok(node);
 
@@ -55,7 +55,7 @@ exports['unary operator node'] = function (test) {
 };
 
 exports['conditional'] = function (test) {
-    var node = n.conditional(n.constant(1, t.int), n.constant(42, t.int), n.constant(0, t.int));
+    const node = n.conditional(n.constant(1, t.int), n.constant(42, t.int), n.constant(0, t.int));
     
     test.ok(node);
 
@@ -72,7 +72,7 @@ exports['conditional'] = function (test) {
 };
 
 exports['loop'] = function (test) {
-    var node = n.loop(n.constant(1, t.int), n.constant(42, t.int));
+    const node = n.loop(n.constant(1, t.int), n.constant(42, t.int));
     
     test.ok(node);
 
