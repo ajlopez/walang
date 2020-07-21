@@ -308,7 +308,7 @@ exports['arithmetic operators'] = function (test) {
     const operators = '+-*/';
     const lexer = lexers.lexer(operators);
   
-    for (var k = 0; k < operators.length; k++) {            
+    for (let k = 0; k < operators.length; k++) {            
         const token = lexer.next();
         
         test.ok(token);
