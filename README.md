@@ -40,6 +40,7 @@ compiled to WebAssembly. WIP.
 - [The h Programming Language](https://christine.website/blog/h-language-2019-06-30)
 - [Build Your Own WebAssembly Compiler](https://www.infoq.com/presentations/webassembly-compiler/)
 - [Build your own WebAssembly Compiler](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html)
+- [Grain Programming Language](https://grain-lang.org/blog/2020/09/29/grain-state-of-the-union-2020/)
 
 ## Contribution
 
